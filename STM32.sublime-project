@@ -1,0 +1,36 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+		},
+	],
+	"settings":
+	{
+		"debug.configurations":
+		[
+			{
+				"name": "test",
+				"type": "gdb",
+				"request": "attach",
+				"executable": "./build/Test.elf",
+				"remote": true,
+				"target": "localhost:3333",
+				"cwd": "${project_path}",
+			},
+			{
+				"name": "test1",
+				"type": "lldb",
+				"custom": true,
+				"request": "launch",
+				"targetCreateCommands": [
+					"target create ${project_path}/build/Test.elf",
+				],
+				"processCreateCommands": [
+					"gdb-remote localhost:3333",
+					"process plugin packet monitor reset init",
+				],
+			},
+		],
+},
+}
